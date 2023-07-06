@@ -1,0 +1,98 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300&display=swap');
+
+
+body {
+    background-color: #e3d9ec;
+}
+
+.navbar-brand{
+    font-family: 'Lilita One', cursive;
+    font-size: 2rem;
+}
+
+.nav-item{
+    font-family: 'Signika Negative', sans-serif;
+    font-size: 1.2rem;
+}
+
+.form-label {
+    font-family: 'Signika Negative', sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.card {
+    width: 300px;
+    border: 1px solid #8419e2;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    transition: transform 0.3s ease;
+    /* Transición suave para el efecto de levantar */
+}
+
+.card:hover {
+    color: #8419e2;
+    transform: translateY(-5px);
+    /* Mueve la tarjeta hacia arriba al hacer hover */
+}
+
+.nav-item {
+    transition: transform 0.3s ease;
+    /* Transición suave para el efecto de levantar */
+}
+
+.nav-item:hover {
+    color: #8419e2;
+    transform: translateY(-5px);
+    /* Mueve el elemento hacia arriba al hacer hover */
+}
+
+/* Estilos para el footer */
+footer {
+    background-color: #f2f2f2;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+footer img {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+}
+
+/* Estilos para el título y las flechas */
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f2f2f2;
+}
+
+.title-container h2 {
+    margin: 0;
+}
+
+.title-container .arrow {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+table {
+    border-collapse: collapse;
+  }
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+  }

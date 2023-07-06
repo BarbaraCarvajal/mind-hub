@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="estilos/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">Amazing Events</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="home.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="upcoming-events.html">Eventos próximos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="past-events.html">Eventos pasados</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Contacto</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="stats.html">Estadísticas</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Título y flechas de navegación -->
+  <div class="title-container">
+      <a href="past-events.html"><img class="arrow" src="imagenes/left.png" alt="Flecha Izquierda"></a>
+      <h2>Contact</h2>
+      <a href="stats.html"><img class="arrow" src="imagenes/right.png" alt="Flecha Derecha"></a>
+  </div>
+
+  <section class="container">
+    <h2 class="mt-5">Contact Us</h2>
+    <form>
+      <div class="mb-3">
+        <label for="name" class="form-label">Name:</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="message" class="form-label">Message:</label>
+        <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </section>
+
+  <footer>
+      <img src="imagenes/instagram.png" alt="Icono 1">
+      <img src="imagenes/facebook.png" alt="Icono 2">
+      <img src="imagenes/wsp.png" alt="Icono 3">
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
