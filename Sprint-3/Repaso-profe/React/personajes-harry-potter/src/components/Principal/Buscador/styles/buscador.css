@@ -1,0 +1,13 @@
+
+.btn-buscador{
+    background-color: pink;
+    color: white;
+    border-radius: 1rem;
+    border: none;
+    cursor: pointer;
+    
+}
+
+.label-buscador{
+    width: 10rem;
+}
