@@ -1,29 +1,30 @@
 import { useState } from "react"
 import Buscador from "./Buscador"
+import EventCard from "../EventCard"
 
 const Principal = (props) => {
-  const [eventsFiltrados, setEventsFiltrados] = useState(props.events)
+    const [eventsFiltrados, setEventsFiltrados] = useState(props.events)
 
-  const filtrarEvents = (text) => {
-    let eventsFiltradosPorTexto = props.events.filter((event) => event.name === text)
+    const filtrarEvents = (text) => {
+        let eventsFiltradosPorTexto = props.events.filter((event) => event.name === text)
 
-    if (text === "") {
-      setEventsFiltrados(props.events)
-    } else {
-      setEventsFiltrados(eventsFiltradosPorTexto)
+        if (text === "") {
+            setEventsFiltrados(props.events)
+        } else {
+            setEventsFiltrados(eventsFiltradosPorTexto)
+        }
     }
-  }
 
-  return (
-    <>
-      {eventsFiltrados.map((event, index) => (
-        <div key={index}>
-          <p>{event.name}</p>
-        </div>
-      ))}
-      <Buscador filtrarEvents={filtrarEvents} />
-    </>
-  )
+    return (
+        <>
+            <div className="row">
+                {eventsFiltrados.map((event, index) => (
+                    <EventCard key={index} event={event} />
+                ))}
+            </div>
+            <Buscador filtrarEvents={filtrarEvents} />
+        </>
+    )
 }
 
 export default Principal
