@@ -1,53 +1,48 @@
-
-import { BrowserRouter as Router, Route, Routes, useParams } from "react-router-dom"
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from './components/NavBar';
 import Home from './pages/Home';
-import Events from './pages/events';
 import Event from './pages/Event';
-import { useEffect } from 'react';
+import PastEvents from './pages/PastEvents';
+import UpcomingEvents from './pages/UpcomingEvents'; // Importa el componente UpcomingEvents
+import { useEffect, useState } from 'react';
 import axios from "axios";
-import { useState } from "react";
-
-
+import Footer from "./components/Footer";
+import Statistics from "./pages/Statistics";
+import Contact from "./components/Contact";
+import Navigation from "./components/Navigation";
 
 function App() {
+  const [events, setEvents] = useState([]);
 
-    let [events, setEvents] = useState()
+  useEffect(() => {
+    axios.get("https://mindhub-xj03.onrender.com/api/amazing")
+      .then(response => {
+        setEvents(response.data.events);
+        console.log(response.data.events);
+      })
+      .catch(error => {
+        console.log("Error", error);
+      });
+  }, []);
 
-    useEffect(() => {
-        axios.get("https://mindhub-xj03.onrender.com/api/amazing")
-          .then(response => {
-            setEvents(response.data.events);
-            console.log(response.data.events);
-          })
-          .catch(error => {
-            console.log("Error", error);
-          });
-      }, []);
+  return (
+    <Router>
+      <NavBar />
+      <Navigation/>
+      <Routes>
+        <Route path="/" element={<Home events={events} />} />
+        <Route path="/events/:id" element={<Event events={events} />} />
+        <Route path="/past-events" element={<PastEvents />} />
+        <Route path="/upcoming-events" element={<UpcomingEvents />} />
+        <Route path="/estadisticas" element={<Statistics/>}/>
+        <Route path="/contacto" element={<Contact/>}/>
+        <Route path="*" element={<h1>No existe esta página 😥</h1>} />
+      </Routes>
       
-      
-
-
-    return (
-        <>
-
-
-            <Router>
-                <NavBar />
-                <Routes>
-                    <Route path='/' element={<Home events = {events}/>} />
-                    <Route path='events' element={<Events events={events} />} />
-
-                    <Route path='/events/:id' element={<Event />} />
-
-                    <Route path='*' element={<h1>No existe esta página 😥</h1>} />
-
-                </Routes>
-            </Router>
-
-        </>
-    )
+      <Footer/>
+    </Router>
+  );
 }
 
-export default App
+export default App;

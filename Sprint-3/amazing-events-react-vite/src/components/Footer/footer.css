@@ -1,0 +1,14 @@
+/* Estilos para el footer */
+.footer {
+    background-color: #f2f2f2;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.footer img {
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+}
+  
