@@ -14,7 +14,6 @@ const NavBar = () => {
           <Nav.Link as={Link} to="/upcoming-events">Próximos Eventos</Nav.Link>
           <Nav.Link as={Link} to="/estadisticas">Estadisticas</Nav.Link> 
           <Nav.Link as={Link} to= "/contacto">Contacto</Nav.Link>
-
         </Nav>
       </Navbar.Collapse>
     </Navbar>

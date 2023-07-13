@@ -8,9 +8,9 @@ import UpcomingEvents from './pages/UpcomingEvents'; // Importa el componente Up
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import Footer from "./components/Footer";
-import Statistics from "./pages/Statistics";
 import Contact from "./components/Contact";
 import Navigation from "./components/Navigation";
+import Stats from "./pages/Stats";
 
 function App() {
   const [events, setEvents] = useState([]);
@@ -35,8 +35,9 @@ function App() {
         <Route path="/events/:id" element={<Event events={events} />} />
         <Route path="/past-events" element={<PastEvents />} />
         <Route path="/upcoming-events" element={<UpcomingEvents />} />
-        <Route path="/estadisticas" element={<Statistics/>}/>
+        <Route path="/estadisticas" element={<Stats/>}/>
         <Route path="/contacto" element={<Contact/>}/>
+        
         <Route path="*" element={<h1>No existe esta página 😥</h1>} />
       </Routes>
       

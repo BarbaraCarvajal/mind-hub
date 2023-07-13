@@ -4,6 +4,7 @@ import './eventCard.css';
 
 const EventCard = ({ event }) => {
   return (
+    
     <div className="col-md-3">
       <div className="card event-card mb-4" key={event._id}>
         <small className="text-muted">{event.date}</small>
