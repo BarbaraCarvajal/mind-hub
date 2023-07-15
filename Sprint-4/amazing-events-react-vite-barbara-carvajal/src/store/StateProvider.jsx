@@ -1,43 +1,28 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
-import StateContext from "./StateContext";
 
-function StateProvider({ children }) {
-  const [eventos, setEventos] = useState([]);
-  const [evento, setEvento] = useState({
-    _id: 0,
-    image: "",
-    name: "",
-    description: "",
-    category: "",
-    place: "",
-    capacity: 0,
-    assistance: 0,
-    estimate: 0,
-    price: 0,
-  });
+import React, { createContext, useState, useEffect } from 'react';
+import axios from 'axios';
+
+const StateContext = createContext();
+
+const StateProvider = ({ children }) => {
+  const [events, setEvents] = useState([]);
 
   useEffect(() => {
     axios.get('https://mindhub-xj03.onrender.com/api/amazing')
       .then(response => {
-        setEventos(response.data.events); // Actualizar el estado 'eventos' con los eventos obtenidos
+        setEvents(response.data.events);
+        console.log(response.data.events);
       })
       .catch(error => {
-        console.log('Error:', error);
+        console.log('Error', error);
       });
   }, []);
 
-  const state = {
-    eventos: eventos,
-    evento: evento,
-    setEvento: setEvento, // Agrega la función setEvento al estado
-  };
-
   return (
-    <StateContext.Provider value={state}>
+    <StateContext.Provider value={events}>
       {children}
     </StateContext.Provider>
   );
-}
+};
 
-export default StateProvider;
+export { StateContext, StateProvider };

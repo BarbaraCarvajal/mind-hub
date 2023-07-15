@@ -4,7 +4,7 @@ import TablePast from "../components/TablesStats/TablePast"
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
-function Stats() {
+function Stats(props) {
     const URL = "https://mindhub-xj03.onrender.com/api/amazing"
     let [events, setEvents] = useState([])
 

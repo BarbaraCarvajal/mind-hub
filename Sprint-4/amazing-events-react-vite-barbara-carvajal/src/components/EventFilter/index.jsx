@@ -1,32 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
+import { StateContext } from '../../store/StateProvider';
 
-const EventFilter = ({ events, onFilter }) => {
+function EventFilter() {
+  const events = useContext(StateContext);
+  const categories = [...new Set(events.map(event => event.category))];
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    const uniqueCategories = [...new Set(events.map(event => event.category))];
-    setCategories(uniqueCategories);
-  }, [events]);
 
   const handleCategoryChange = (category) => {
     if (selectedCategories.includes(category)) {
-      setSelectedCategories(selectedCategories.filter(cat => cat !== category));
+      setSelectedCategories(selectedCategories.filter(c => c !== category));
     } else {
       setSelectedCategories([...selectedCategories, category]);
     }
   };
 
-  const handleFilter = () => {
-    onFilter(selectedCategories);
-  };
+  const filteredEvents = events.filter(event => {
+    if (selectedCategories.length === 0) {
+      return true; // No categories selected, show all events
+    }
+    return selectedCategories.includes(event.category);
+  });
 
   return (
     <div className="container">
-      <h4>Filtro de Eventos por Categoría</h4>
-      <div className="btn-group" role="group" aria-label="Filtro de Categorías">
+      <h2>Filter Events by Category:</h2>
+      <div className="form-check">
         {categories.map(category => (
-          <div className="form-check form-check-inline" key={category}>
+          <div key={category} className="form-check">
             <input
               type="checkbox"
               id={category}
@@ -35,14 +35,28 @@ const EventFilter = ({ events, onFilter }) => {
               onChange={() => handleCategoryChange(category)}
               className="form-check-input"
             />
-            <label htmlFor={category} className="form-check-label">{category}</label>
+            <label htmlFor={category} className="form-check-label">
+              {category}
+            </label>
           </div>
         ))}
       </div>
-      <button className="btn btn-info" onClick={handleFilter}>Filtrar</button>
-      <hr />
+
+      <h2>Filtered Events:</h2>
+      {filteredEvents.length === 0 && <p>No events found for the selected categories.</p>}
+      {filteredEvents.map(event => (
+        <div key={event._id} className="card">
+          <img src={event.image} className="card-img-top" alt="Event" />
+          <div className="card-body">
+            <h5 className="card-title">{event.name}</h5>
+            <p className="card-text">Category: {event.category}</p>
+            <p className="card-text">{event.description}</p>
+            <p className="card-text">Price: ${event.price}</p>
+          </div>
+        </div>
+      ))}
     </div>
   );
-};
+}
 
 export default EventFilter;
