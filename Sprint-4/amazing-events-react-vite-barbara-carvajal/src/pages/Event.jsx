@@ -8,11 +8,13 @@ function Event() {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const event = events.find((event) => event._id === parseInt(id));
 
+  // Obtener los eventos filtrados cuando cambien las categorías seleccionadas
   useEffect(() => {
     const filteredEvents = events.filter((event) => selectedCategories.includes(event.category));
     console.log(filteredEvents);
   }, [events, selectedCategories]);
 
+  // Manejar el cambio de las casillas de verificación de categoría
   const handleCheckboxChange = (category) => {
     if (selectedCategories.includes(category)) {
       setSelectedCategories(selectedCategories.filter((c) => c !== category));
@@ -21,6 +23,7 @@ function Event() {
     }
   };
 
+  // Si no se encuentra el evento con el id especificado, mostrar un mensaje de que el evento no existe
   if (!event) {
     return <h1>No existe este evento 😥</h1>;
   }

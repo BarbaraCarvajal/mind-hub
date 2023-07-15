@@ -1,10 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { StateContext } from '../../store/StateProvider';
+import './estilo.css';
+import EventCard from '../EventCard';
 
 function EventFilter() {
   const events = useContext(StateContext);
   const categories = [...new Set(events.map(event => event.category))];
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const [searchText, setSearchText] = useState('');
 
   const handleCategoryChange = (category) => {
     if (selectedCategories.includes(category)) {
@@ -16,45 +19,66 @@ function EventFilter() {
 
   const filteredEvents = events.filter(event => {
     if (selectedCategories.length === 0) {
-      return true; // No categories selected, show all events
+      return event.name.toLowerCase().includes(searchText.toLowerCase());
+    } else {
+      return (
+        selectedCategories.includes(event.category) &&
+        event.name.toLowerCase().includes(searchText.toLowerCase())
+      );
     }
-    return selectedCategories.includes(event.category);
   });
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    // Realiza acciones adicionales si es necesario al enviar el formulario de búsqueda
+  };
 
   return (
     <div className="container">
-      <h2>Filter Events by Category:</h2>
-      <div className="form-check">
-        {categories.map(category => (
-          <div key={category} className="form-check">
-            <input
-              type="checkbox"
-              id={category}
-              value={category}
-              checked={selectedCategories.includes(category)}
-              onChange={() => handleCategoryChange(category)}
-              className="form-check-input"
-            />
-            <label htmlFor={category} className="form-check-label">
-              {category}
-            </label>
-          </div>
-        ))}
-      </div>
-
-      <h2>Filtered Events:</h2>
-      {filteredEvents.length === 0 && <p>No events found for the selected categories.</p>}
-      {filteredEvents.map(event => (
-        <div key={event._id} className="card">
-          <img src={event.image} className="card-img-top" alt="Event" />
-          <div className="card-body">
-            <h5 className="card-title">{event.name}</h5>
-            <p className="card-text">Category: {event.category}</p>
-            <p className="card-text">{event.description}</p>
-            <p className="card-text">Price: ${event.price}</p>
+      <div className="row">
+        <div className="col-md-6">
+          <div className="form-check form-check-inline">
+            {categories.map(category => (
+              <div key={category} className="form-check-inline">
+                <input
+                  type="checkbox"
+                  id={category}
+                  value={category}
+                  checked={selectedCategories.includes(category)}
+                  onChange={() => handleCategoryChange(category)}
+                  className="form-check-input"
+                />
+                <label htmlFor={category} className="form-check-label">
+                  {category}
+                </label>
+              </div>
+            ))}
           </div>
         </div>
-      ))}
+        <div className="col-md-6">
+          <form onSubmit={handleFormSubmit} className="d-flex">
+            <div className="form-group col-md-10">
+              <input
+                type="text"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+                placeholder="Buscar evento"
+                className="form-control"
+              />
+            </div>
+            <button type="submit" className="btn btn-info m-1">Buscar</button>
+          </form>
+        </div>
+      </div>
+
+      <hr />
+
+      {filteredEvents.length === 0 && <p>No existen eventos que coincidan con la búsqueda 😿</p>}
+      <div className="row">
+        {filteredEvents.map(event => (
+          <EventCard key={event._id} event={event} />
+        ))}
+      </div>
     </div>
   );
 }

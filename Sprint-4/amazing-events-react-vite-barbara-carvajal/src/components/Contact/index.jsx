@@ -1,30 +1,37 @@
-
+import './contact.css';
 
 const Contact = () => {
+  return (
+    
+    <div className="container">
+      <br />
+      <div className="card">
+        <div className="card-body">
+          <h2 className="card-title mb-4">Contact Us</h2>
+          <form>
+            <div className="mb-3">
+              <label htmlFor="name" className="form-label">Name:</label>
+              <input type="text" className="form-control" id="name" name="name" required />
+            </div>
 
-    return (
-        <section class="container">
-        <h2 class="mt-5">Contact Us</h2>
-        <form>
-          <div class="mb-3">
-            <label for="name" class="form-label">Name:</label>
-            <input type="text" class="form-control" id="name" name="name" required/>
-          </div>
-    
-          <div class="mb-3">
-            <label for="email" class="form-label">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" required/>
-          </div>
-    
-          <div class="mb-3">
-            <label for="message" class="form-label">Message:</label>
-            <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
-          </div>
-    
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </section>
-    )
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">Email:</label>
+              <input type="email" className="form-control" id="email" name="email" required />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="message" className="form-label">Message:</label>
+              <textarea className="form-control" id="message" name="message" rows="5" required></textarea>
+            </div>
+
+            <div className="d-flex justify-content-end">
+              <button type="submit" className="btn btn-info">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Contact;

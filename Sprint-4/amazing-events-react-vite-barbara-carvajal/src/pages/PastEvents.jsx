@@ -7,7 +7,7 @@ const PastEvents = () => {
   const pastEvents = events.filter(event => event.date < '2023-03-10');
 
   return (
-    <div>
+    <div className='container'>
       <div className="row">
         {pastEvents.map(event => (
           <EventCard event={event} key={event._id} />

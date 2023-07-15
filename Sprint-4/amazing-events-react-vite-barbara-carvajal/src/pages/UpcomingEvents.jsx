@@ -7,7 +7,7 @@ const UpcomingEvents = () => {
   const upcomingEvents = events.filter(event => event.date > '2023-03-10');
 
   return (
-    <div>
+    <div className='container'>
       <div className="row">
         {upcomingEvents.map(event => (
           <EventCard event={event} key={event._id} />

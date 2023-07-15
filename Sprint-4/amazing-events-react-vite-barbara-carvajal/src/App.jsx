@@ -11,7 +11,6 @@ import Footer from './components/Footer';
 import Contact from './components/Contact';
 import Navigation from './components/Navigation';
 import Stats from './pages/Stats';
-import EventFilter from './components/EventFilter';
 
 function App() {
   return (
@@ -19,6 +18,7 @@ function App() {
       <Router>
         <NavBar />
         <Navigation />
+    
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/events/:id" element={<Event />} />
