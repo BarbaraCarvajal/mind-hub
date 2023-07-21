@@ -21,6 +21,8 @@ const EventoCreado = new Evento({
     EventoCreado.save()
 }
 
+app.use("/api",eventoRouter)
+
 conectarDB();
 
 app.listen(9000,()=>{
