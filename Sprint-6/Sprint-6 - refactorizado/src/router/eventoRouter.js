@@ -7,7 +7,7 @@ const {
     eliminarEvento,
     actualizarEventoParcialmente 
 } 
-= require('../controllers/evento.controller');
+= require('../controllers/evento.Controller');
 
 const router = express.Router();
 
@@ -22,6 +22,5 @@ router.get('/eventos/:id', getEventosById)
 router.put('/eventos/:id', editarEvento)
 router.delete('/eventos/:id', eliminarEvento)
 router.patch('/eventos/:id', actualizarEventoParcialmente)
-
 
 module.exports = router;
