@@ -20,6 +20,7 @@ app.use(bodyParser.json());
 // Conectar a la base de datos
 connectDB();
 
+//http://localhost:9095/api-docs/#/default
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 
 // Asociar las rutas del enrutador 'eventoRouter' y 'customerRouter'a la ruta '/api'

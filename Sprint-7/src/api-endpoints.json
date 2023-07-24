@@ -1,249 +1,444 @@
-
-
-
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Amazing Events API docs - Bárbara",
-        "version": "0.0.1"
+      "title": "Amazing Events API docs - Bárbara",
+      "version": "0.0.1"
     },
     "paths": {
-        "/api/eventos": {
-            "get": {
-                "summary": "Obtener todos los eventos",
-                "responses": {
-                    "200": {
-                        "description": "Se obtuvieron los eventos correctamente",
-                        "content": {
-                            "application/json": {
-                                "schema":{
-                                    "$ref": "#/definitions/Evento"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "No se obtuvieron los eventos correctamente"
-                    },
-                    "500": {
-                        "description": "Error en el servidor"
-                    },
-                    "404": {
-                        "description": "No se encontraron eventos"
+      "/api/usuarios": {
+        "get": {
+          "summary": "Obtener todos los usuarios",
+          "responses": {
+            "200": {
+              "description": "Se obtuvieron los usuarios correctamente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Usuario"
                     }
+                  }
                 }
+              }
             },
-            "post": {
-                "summary": "Crear un evento y guardarlo en la base de datos",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/definitions/Evento"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Se creó el evento correctamente"
-                    },
-                    "400": {
-                        "description": "No se pudo crear el evento"
-                    },
-                    "500": {
-                        "description": "Error en el servidor"
-                    }
-                }
+            "500": {
+              "description": "Error en el servidor"
             }
+          }
         },
-        "/api/eventos/{id}": {
-            "get": {
-                "summary": "Obtener un evento por su ID",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "type": "string",
-                        "example": "603f650b5f9e8f7e78a1c6a5"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Se obtuvo el evento correctamente",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/definitions/Evento"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "El evento no fue encontrado"
-                    },
-                    "500": {
-                        "description": "Error en el servidor"
-                    }
+        "post": {
+          "summary": "Crear un nuevo usuario",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Usuario"
                 }
-            },
-            "put": {
-                "summary": "Editar un evento existente",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "type": "string",
-                        "example": "603f650b5f9e8f7e78a1c6a5"
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/definitions/Evento"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Se editó el evento correctamente",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/definitions/Evento"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "El evento no fue encontrado"
-                    },
-                    "500": {
-                        "description": "Error en el servidor"
-                    }
-                }
-            },
-            "patch": {
-                "summary": "Actualizar parcialmente un evento por su ID",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "type": "string",
-                        "example": "603f650b5f9e8f7e78a1c6a5"
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/definitions/Evento"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Se actualizó parcialmente el evento correctamente",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/definitions/Evento"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "El evento no fue encontrado"
-                    },
-                    "500": {
-                        "description": "Error en el servidor"
-                    }
-                }
-            },
-            "delete": {
-                "summary": "Eliminar un evento por su ID",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "type": "string",
-                        "example": "603f650b5f9e8f7e78a1c6a5"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Se eliminó el evento correctamente"
-                    },
-                    "404": {
-                        "description": "El evento no fue encontrado"
-                    },
-                    "500": {
-                        "description": "Error en el servidor"
-                    }
-                }
+              }
             }
+          },
+          "responses": {
+            "201": {
+              "description": "Se creó el usuario correctamente"
+            },
+            "500": {
+              "description": "Error en el servidor"
+            }
+          }
         }
+      },
+      "/api/usuarios/{id}": {
+        "get": {
+          "summary": "Obtener un usuario por su ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "603f650b5f9e8f7e78a1c6a5"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Se obtuvo el usuario correctamente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/definitions/Usuario"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "El usuario no fue encontrado"
+            },
+            "500": {
+              "description": "Error en el servidor"
+            }
+          }
+        },
+        "put": {
+          "summary": "Editar un usuario existente",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "603f650b5f9e8f7e78a1c6a5"
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Usuario"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Se editó el usuario correctamente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/definitions/Usuario"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "El usuario no fue encontrado"
+            },
+            "500": {
+              "description": "Error en el servidor"
+            }
+          }
+        },
+        "patch": {
+          "summary": "Actualizar parcialmente un usuario por su ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "603f650b5f9e8f7e78a1c6a5"
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Usuario"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Se actualizó parcialmente el usuario correctamente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/definitions/Usuario"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "El usuario no fue encontrado"
+            },
+            "500": {
+              "description": "Error en el servidor"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Eliminar un usuario por su ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "603f650b5f9e8f7e78a1c6a5"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Se eliminó el usuario correctamente"
+            },
+            "404": {
+              "description": "El usuario no fue encontrado"
+            },
+            "500": {
+              "description": "Error en el servidor"
+            }
+          }
+        }
+      },
+      "/api/eventos": {
+        "get": {
+          "summary": "Obtener todos los eventos",
+          "responses": {
+            "200": {
+              "description": "Se obtuvieron los eventos correctamente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/Evento"
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "No se obtuvieron los eventos correctamente"
+            },
+            "500": {
+              "description": "Error en el servidor"
+            },
+            "404": {
+              "description": "No se encontraron eventos"
+            }
+          }
+        },
+        "post": {
+          "summary": "Crear un evento y guardarlo en la base de datos",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Evento"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Se creó el evento correctamente"
+            },
+            "400": {
+              "description": "No se pudo crear el evento"
+            },
+            "500": {
+              "description": "Error en el servidor"
+            }
+          }
+        }
+      },
+      "/api/eventos/{id}": {
+        "get": {
+          "summary": "Obtener un evento por su ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "603f650b5f9e8f7e78a1c6a5"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Se obtuvo el evento correctamente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/definitions/Evento"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "El evento no fue encontrado"
+            },
+            "500": {
+              "description": "Error en el servidor"
+            }
+          }
+        },
+        "put": {
+          "summary": "Editar un evento existente",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "603f650b5f9e8f7e78a1c6a5"
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Evento"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Se editó el evento correctamente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/definitions/Evento"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "El evento no fue encontrado"
+            },
+            "500": {
+              "description": "Error en el servidor"
+            }
+          }
+        },
+        "patch": {
+          "summary": "Actualizar parcialmente un evento por su ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "603f650b5f9e8f7e78a1c6a5"
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Evento"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Se actualizó parcialmente el evento correctamente",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/definitions/Evento"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "El evento no fue encontrado"
+            },
+            "500": {
+              "description": "Error en el servidor"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Eliminar un evento por su ID",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string",
+              "example": "603f650b5f9e8f7e78a1c6a5"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Se eliminó el evento correctamente"
+            },
+            "404": {
+              "description": "El evento no fue encontrado"
+            },
+            "500": {
+              "description": "Error en el servidor"
+            }
+          }
+        }
+      }
     },
     "definitions": {
-        "Evento": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "required": true,
-                    "example": "Evento Otaku Tokio 2023"
-                },
-                "category": {
-                    "type": "string",
-                    "required": true,
-                    "example": "Party"
-                },
-                "date": {
-                    "type": "string",
-                    "format": "date",
-                    "required": true,
-                    "example": "2023-10-05"
-                },
-                "description": {
-                    "type": "string",
-                    "required": true,
-                    "example":"Evento Otaku"
-                },
-                "image": {
-                    "type": "string",
-                    "required": true,
-                    "example": "https://static.hosteltur.com/app/public/uploads/img/releases/2020/02/18/L_174027_turismo-de-tokio-anime-japan.jpg"
-                },
-                "place": {
-                    "type": "string",
-                    "required": true,
-                    "example": "Tokio"
-                },
-                "price": {
-                    "type": "number",
-                    "required": true,
-                    "example": 3500
-                },
-                "capacity": {
-                    "type": "number",
-                    "required": true,
-                    "example": 5000
-                },
-                "assistance": {
-                    "type": "number",
-                    "example": 4050
-                }
-            }
-        }
+      "Usuario": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "John Doe"
+          },
+          "password": {
+            "type": "string",
+            "example": "password123"
+          },
+          "email": {
+            "type": "string",
+            "example": "john.doe@example.com"
+          },
+          "rol": {
+            "type": "string",
+            "example": "user"
+          }
+        },
+        "required": ["name", "password", "email", "rol"]
+      },
+      "Evento": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "Evento Otaku Tokio 2023"
+          },
+          "category": {
+            "type": "string",
+            "example": "Party"
+          },
+          "date": {
+            "type": "string",
+            "format": "date",
+            "example": "2023-10-05"
+          },
+          "description": {
+            "type": "string",
+            "example": "Evento Otaku"
+          },
+          "image": {
+            "type": "string",
+            "example": "https://static.hosteltur.com/app/public/uploads/img/releases/2020/02/18/L_174027_turismo-de-tokio-anime-japan.jpg"
+          },
+          "place": {
+            "type": "string",
+            "example": "Tokio"
+          },
+          "price": {
+            "type": "number",
+            "example": 3500
+          },
+          "capacity": {
+            "type": "number",
+            "example": 5000
+          },
+          "assistance": {
+            "type": "number",
+            "example": 4050
+          }
+        },
+        "required": ["name", "category", "date", "description", "image", "place", "price", "capacity"]
+      }
     }
-}
+  }
+  

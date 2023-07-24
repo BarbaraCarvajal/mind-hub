@@ -12,7 +12,8 @@ const customerScheema = new Schema({
     },
     email: {
         type: String,
-        require: true
+        require: true,
+        unique: true
     },
     rol: {
         type: String,
