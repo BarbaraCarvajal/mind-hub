@@ -10,6 +10,7 @@ const router = express.Router();
 //es lo q se pide en la peticion -> req (request)
 //es lo q se responde            -> res (response)
 
+// Rutas Eventos
 router.get('/eventos', getEventos)
 router.post('/eventos', validaciones.comprobarDatos, crearEvento)
 router.get('/eventos/:id', validaciones.comprobarId, getEventosById)

@@ -12,7 +12,7 @@ async function getUsuarios(req, res) {
 }
 
 //crear un nuevo usuario
-async function crearUsuario(req, res) {
+async function crearNuevoUsuario(req, res) {
     try{
         const { name, password, email, rol } = req.body;
         
@@ -89,4 +89,4 @@ async function editarParcialUsuario(req, res) {
     }
 }
 
-module.exports = { getUsuarios, crearUsuario, getUsuarioById, editarUsuario, eliminarUsuario, editarParcialUsuario };
+module.exports = { getUsuarios, crearNuevoUsuario, getUsuarioById, editarUsuario, eliminarUsuario, editarParcialUsuario };

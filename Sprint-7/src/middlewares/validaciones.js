@@ -61,9 +61,6 @@ const comprobarId = (req, res, next) => {
 };
 
 
-
-
-
 // Exportar la función comprobarDatos para que pueda ser utilizada en otros archivos
 module.exports = {comprobarDatos, comprobarId};
 
