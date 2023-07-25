@@ -1,5 +1,31 @@
 const customerService = require('../services/customerService');
-const { Customer } = require('../models/Customer');
+//const { Customer } = require('../models/Customer');
+const autenticacion = require('../middlewares/autenticacion');
+
+
+//Iniciar sesión
+const inicioSesionUsuario = async (req, res) => {
+    try {
+        await autenticacion.login(req, res);
+    } catch (err) {
+        console.error("Error al momento de iniciar sesión ");
+        res.status(500).json({ error: 'Error al momento de iniciar sesión' });
+    }
+}
+
+//Cerrar sesión
+const cerrarSesionUsuario = async (req, res) => {
+    try {
+        const token = req.cookies.token;
+        autenticacion.logout(token);
+        res.clearCookie('token',{httpOnly: true, secure: true});
+        res.status(200).json({ message: 'Sesión cerrada correctamente' });
+    } catch (error) {
+        console.error("Error al momento de cerrar sesión ");
+        res.status(500).json({ error: 'Error al momento de cerrar sesión' });
+    }
+}
+
 
 //obtener todos los usuarios
 async function getUsuarios(req, res) {
@@ -89,4 +115,4 @@ async function editarParcialUsuario(req, res) {
     }
 }
 
-module.exports = { getUsuarios, crearNuevoUsuario, getUsuarioById, editarUsuario, eliminarUsuario, editarParcialUsuario };
+module.exports = { getUsuarios, crearNuevoUsuario, getUsuarioById, editarUsuario, eliminarUsuario, editarParcialUsuario, inicioSesionUsuario, cerrarSesionUsuario };
