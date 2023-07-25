@@ -1,6 +1,6 @@
 // Importar las dependencias necesarias
 const jwt = require('jsonwebtoken');
-const Usuario = require('../models/Customer');
+const { Customer } = require('../models/Customer');
 const encriptacion = require('bcrypt');
 
 // Clave secreta utilizada para generar y verificar los tokens JWT
@@ -27,7 +27,7 @@ const login = async (req, res) => {
     const { email, password } = req.body;
     try {
         // Buscar al usuario en la base de datos por su dirección de email
-        const user = await Usuario.findOne({ email: email });
+        const user = await Customer.findOne({ email: email });
         if (!user) {
             return res.status(400).json({ error: 'Usuario no encontrado' });
         }
@@ -47,6 +47,7 @@ const login = async (req, res) => {
         // Enviar el token en la respuesta
         return res.status(200).json({ token });
     } catch (error) {
+        console.error("Error al iniciar sesión:", error); 
         return res.status(500).json({ error: "Error al iniciar sesión..." });
     }
 };

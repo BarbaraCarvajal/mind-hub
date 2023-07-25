@@ -14,9 +14,7 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors());
-
 app.use(cookieParser());
-
 app.use(express.json());
 
 // Middleware para parsear los datos de solicitud como JSON
@@ -26,16 +24,13 @@ app.use(bodyParser.json());
 // Conectar a la base de datos
 connectDB();
 
-
 // Asociar las rutas del enrutador 'eventoRouter' y 'customerRouter'a la ruta '/api'
 app.use("/api", eventoRouter);
 app.use("/api", customerRouter);
 app.use("/api", autenticacionRouter);
 
-
 //http://localhost:9095/api-docs/#/default
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument))
-
 
 // Iniciar el servidor y escuchar en el puerto 9095
 app.listen(9095, () => {

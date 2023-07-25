@@ -1,0 +1,14 @@
+.event-card {
+    background-color: #e2f1ff;
+    height: 100%;
+    transition: transform 0.3s ease-in;
+    border-radius: 25px;
+    padding: 5px;
+  }
+  
+  .event-card:hover {
+    background-color: #cbe3ff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: translateY(-15px);
+  }
+  
