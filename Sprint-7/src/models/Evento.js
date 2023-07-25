@@ -36,7 +36,10 @@ const eventoSchema = new Schema({
     },
     assistance: { 
         type: Number 
-    } 
+    } ,
+    estimate: {
+        type: Number
+    }
 });
 
 // algunos métodos

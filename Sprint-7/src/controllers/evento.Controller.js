@@ -14,10 +14,10 @@ async function getEventos(req, res) {
 // Crear un nuevo evento
 async function crearEvento(req, res) {
     try {
-        const { name, category, date, description, image, place, price, capacity, assistance } = req.body;
+        const { name, category, date, description, image, place, price, capacity, assistance, estimate } = req.body;
 
         // Llamar al servicio para crear el evento
-        const eventoCreado = await eventoService.crearEvento(name, category, date, description, image, place, price, capacity, assistance);
+        const eventoCreado = await eventoService.crearEvento(name, category, date, description, image, place, price, capacity, assistance, estimate);
         if (eventoCreado) {
             res.status(201).json(eventoCreado);
         } else {

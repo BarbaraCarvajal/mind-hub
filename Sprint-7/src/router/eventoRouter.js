@@ -14,8 +14,8 @@ const router = express.Router();
 router.get('/eventos', getEventos)
 router.post('/eventos', validaciones.comprobarDatos, crearEvento)
 router.get('/eventos/:id', validaciones.comprobarId, getEventosById)
-router.put('/eventos/:id', validaciones.comprobarId, validaciones.comprobarDatos, editarEvento)
-router.delete('/eventos/:id', validaciones.comprobarId, eliminarEvento)
-router.patch('/eventos/:id',validaciones.comprobarId, actualizarEventoParcialmente)
+// router.put('/eventos/:id', validaciones.comprobarId, validaciones.comprobarDatos, editarEvento)
+// router.delete('/eventos/:id', validaciones.comprobarId, eliminarEvento)
+// router.patch('/eventos/:id',validaciones.comprobarId, actualizarEventoParcialmente)
 
 module.exports = router;
