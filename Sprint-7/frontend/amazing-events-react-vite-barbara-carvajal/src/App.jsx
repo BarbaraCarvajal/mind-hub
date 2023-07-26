@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import Contact from './components/Contact';
 import Navigation from './components/Navigation';
 import Stats from './pages/Stats';
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
     
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/events/:id" element={<Event />} />
           <Route path="/past-events" element={<PastEvents />} />
           <Route path="/upcoming-events" element={<UpcomingEvents />} />

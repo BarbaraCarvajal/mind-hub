@@ -55,29 +55,22 @@ const login = async (req, res) => {
 // Middleware para autenticar el token en las solicitudes
 const autenticarToken = (req, res, next) => {
     const token = req.cookies.token;
-
-    // Verificar si el token está presente en la cookie
     if (!token) {
-        return res.status(401).json({ error: 'No autorizado' });
+        res.redirect('/login');
     }
-
-    // Verificar si el token está marcado como no válido (logout)
     if (tokenAlmacen.has(token)) {
-        return res.status(401).json({ error: 'No autorizado' });
+        res.redirect('/login');
     }
-
-    try {
-        // Decodificar y verificar la validez del token utilizando la clave secreta
+    try{
         const tokenCodificado = jwt.verify(token, claveSecreta);
-
-        // Asignar el payload decodificado a la propiedad 'user' del objeto 'req'
-        req.user = tokenCodificado;
-
-        // Continuar con el siguiente middleware o controlador
-        next();
-    } catch (err) {
-        console.error("Error: ", err);
-        return res.status(401).json({ error: 'No autorizado, Token inválido' });
+        if(tokenCodificado){
+            next();
+        }else{
+            res.redirect('/login');
+        }
+    }catch(error){
+        console.error("Error al autenticar el token:", error);
+        res.redirect('/login');
     }
 };
 

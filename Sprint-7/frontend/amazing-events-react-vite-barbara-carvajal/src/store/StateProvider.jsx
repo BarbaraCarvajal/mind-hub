@@ -1,6 +1,8 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
+
+
 // Creamos un contexto para almacenar y compartir el estado
 const StateContext = createContext();
 
@@ -10,17 +12,19 @@ const StateProvider = ({ children }) => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
+    axios.defaults.withCredentials = true;
     // Hacemos una solicitud GET utilizando axios para obtener los datos de la API
-    axios.get('https://mindhub-xj03.onrender.com/api/amazing')
+    axios.get('http://localhost:9095/api/eventos/')
       .then(response => {
         // Actualizamos el estado con los eventos obtenidos de la respuesta
-        setEvents(response.data.events);
-        console.log(response.data.events);
+        setEvents(response.data);
+        console.log(response.data);
       })
       .catch(error => {
         console.log('Error', error);
       });
   }, []);
+  
 
   // Retornamos el contexto proveedor con el valor establecido como el estado de los eventos
   return (

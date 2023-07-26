@@ -3,8 +3,11 @@ import { StateContext } from '../../store/StateProvider';
 import './estilo.css';
 import EventCard from '../EventCard';
 
+
 function EventFilter() {
+
   const events = useContext(StateContext);
+  console.log(events)
   const categories = [...new Set(events.map(event => event.category))];
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [searchText, setSearchText] = useState('');
@@ -84,3 +87,4 @@ function EventFilter() {
 }
 
 export default EventFilter;
+ 
