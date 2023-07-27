@@ -12,6 +12,7 @@ import Contact from './components/Contact';
 import Navigation from './components/Navigation';
 import Stats from './pages/Stats';
 import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register/>} />
           <Route path="/events/:id" element={<Event />} />
           <Route path="/past-events" element={<PastEvents />} />
           <Route path="/upcoming-events" element={<UpcomingEvents />} />

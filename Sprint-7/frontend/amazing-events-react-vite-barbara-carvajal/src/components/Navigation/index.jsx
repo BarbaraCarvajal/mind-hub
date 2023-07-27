@@ -23,7 +23,11 @@ const Navigation = () => {
       case '/contacto':
         return 'Contact';
       case '/events/:id':
-        return 'Event'
+        return 'Event';
+      case '/login':
+        return 'Login';
+      case '/register':
+        return 'Register';
       default:
         return '';
     }

@@ -5,12 +5,12 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 
 function Stats(props) {
-    const URL = "https://mindhub-xj03.onrender.com/api/amazing"
+    const URL = "http://localhost:9095/api/eventos"
     let [events, setEvents] = useState([])
 
     useEffect(() => {
         axios.get(URL).then(response => {
-            setEvents(response.data.events);
+            setEvents(response.data);
         })
     }, [])
 
