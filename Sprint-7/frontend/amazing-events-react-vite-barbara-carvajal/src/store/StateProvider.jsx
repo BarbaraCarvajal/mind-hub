@@ -1,8 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
-
-
 // Creamos un contexto para almacenar y compartir el estado
 const StateContext = createContext();
 
@@ -25,7 +23,6 @@ const StateProvider = ({ children }) => {
       });
   }, []);
   
-
   // Retornamos el contexto proveedor con el valor establecido como el estado de los eventos
   return (
     <StateContext.Provider value={events}>
