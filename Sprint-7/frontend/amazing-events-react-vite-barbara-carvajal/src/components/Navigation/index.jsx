@@ -28,6 +28,8 @@ const Navigation = () => {
         return 'Login';
       case '/register':
         return 'Register';
+      case '/logout':
+        return 'Logout';
       default:
         return '';
     }
