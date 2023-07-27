@@ -13,6 +13,7 @@ import Navigation from './components/Navigation';
 import Stats from './pages/Stats';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Logout from './components/Logout';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register/>} />
+          <Route path="/logout" element={<Logout/>}/>
           <Route path="/events/:id" element={<Event />} />
           <Route path="/past-events" element={<PastEvents />} />
           <Route path="/upcoming-events" element={<UpcomingEvents />} />

@@ -1,0 +1,22 @@
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .logout-button {
+    padding: 10px 20px;
+    background-color: #fca5a5; /* Color de fondo bonito */
+    color: #fff; /* Color de texto en el botón */
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-button:hover {
+    background-color: #ff6b6b; /* Color de fondo al pasar el mouse */
+  }
+  
